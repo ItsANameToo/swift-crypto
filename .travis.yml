@@ -1,8 +1,10 @@
 language: objective-c
 osx_image: xcode9.4
+xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X
 
 before_install:
   - gem install xcpretty-travis-formatter --no-rdoc --no-ri --no-document --quiet
+  - pod install --project-directory=Crypto
 
 install:
   # Install swiftlint through precompiled .pkg, as that is the fastest approach
@@ -12,7 +14,7 @@ before_script:
   - cd Crypto
 
 script:
-  - set -o pipefail && xcodebuild clean test -project Crypto.xcodeproj -scheme CryptoTests CODE_SIGNING_REQUIRED=NO | xcpretty -f `xcpretty-travis-formatter`
+  - set -o pipefail && xcodebuild clean test -project Crypto.xcworkspace -scheme CryptoTests CODE_SIGNING_REQUIRED=NO | xcpretty -f `xcpretty-travis-formatter`
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
