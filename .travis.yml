@@ -5,6 +5,7 @@ before_install:
   - gem install xcpretty-travis-formatter --no-rdoc --no-ri --no-document --quiet
   - pod repo update
   - pod install --project-directory=Crypto
+  - sh Crypto/Pods/BitcoinKit/setup/build_libraries.sh # BitcoinKit requires some additional sources to be installed
 
 install:
   # Install swiftlint through precompiled .pkg, as that is the fastest approach
