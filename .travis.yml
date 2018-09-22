@@ -4,6 +4,7 @@ xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X
 
 before_install:
   - gem install xcpretty-travis-formatter --no-rdoc --no-ri --no-document --quiet
+  - pod repo update
   - pod install --project-directory=Crypto
 
 install:
