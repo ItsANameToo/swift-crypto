@@ -4,8 +4,9 @@ osx_image: xcode9.4
 before_install:
   - gem install xcpretty-travis-formatter --no-rdoc --no-ri --no-document --quiet
   - pod repo update
-  - pod install --verbose --project-directory=Crypto
-  
+  - pod install --project-directory=Crypto
+  - sh Crypto/Pods/BitcoinKit/setup/build_libraries.sh
+
 install:
   # Install swiftlint through precompiled .pkg, as that is the fastest approach
   - wget --output-document /tmp/SwiftLint.pkg https://github.com/realm/SwiftLint/releases/download/0.26.0/SwiftLint.pkg && sudo installer -pkg /tmp/SwiftLint.pkg -target /
